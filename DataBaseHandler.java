@@ -47,7 +47,6 @@ public class DataBaseHandler extends Configs {
     @FXML
     public  void addtable() {
     try {
-        // так как мы уже скачали
         File file = new File("C:\\Users\\Kamilla Badalova\\Desktop\\data.csv");
         FileReader fr = new FileReader(file);
         BufferedReader reader = new BufferedReader(fr);
