@@ -7,5 +7,5 @@ public class Const {
     public static final String USERS_LOGIN ="login";
     public static final String USERS_PASSWORD ="password";
     public static final String USERS_LOCATION ="location";
-    public static final String USERS_MAIL="mail";
+    public static final String USERS_MAIL="mail"; 
 }
