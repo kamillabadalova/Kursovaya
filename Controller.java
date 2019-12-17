@@ -135,6 +135,15 @@ public class Controller implements Initializable {
 
     @FXML
      public void ClickToLin(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+         //  на графике все верно располагается,
+                  //  по х - время фиксации значения временного ряда,т.е. года
+                  //  по у - значение временного ряда,т.е. количество браков
+                  lineChart.getXAxis().setAutoRanging(false);
+                  yAxis.setUpperBound(2018);
+                  yAxis.setLowerBound(1945);
+                  yAxis.setTickUnit(5);
+                  yAxis.setLabel("Годы");
+                  xAxis.setLabel("Браки");
          try {
              Connection con = new DataBaseHandler().getDbConnection();
              PreparedStatement pr = con.prepareStatement(select);
@@ -170,6 +179,15 @@ public class Controller implements Initializable {
      }
      @FXML
     public void ClickToLog(ActionEvent actionEvent) {
+        //  на графике все верно располагается,
+                  //  по х - время фиксации значения временного ряда,т.е. года
+                  //  по у - значение временного ряда,т.е. количество браков
+                  lineChart.getXAxis().setAutoRanging(false);
+                  yAxis.setUpperBound(2018);
+                  yAxis.setLowerBound(1945);
+                  yAxis.setTickUnit(5);
+                  yAxis.setLabel("Годы");
+                  xAxis.setLabel("Браки");
         try {
             Connection con = new DataBaseHandler().getDbConnection();
             PreparedStatement pr = con.prepareStatement(select);
@@ -204,6 +222,15 @@ public class Controller implements Initializable {
     }
     @FXML
     public void ClickToExp(ActionEvent actionEvent) {
+        //  на графике все верно располагается,
+                  //  по х - время фиксации значения временного ряда,т.е. года
+                  //  по у - значение временного ряда,т.е. количество браков
+                  lineChart.getXAxis().setAutoRanging(false);
+                  yAxis.setUpperBound(2018);
+                  yAxis.setLowerBound(1945);
+                  yAxis.setTickUnit(5);
+                  yAxis.setLabel("Годы");
+                  xAxis.setLabel("Браки");
         try {
             Connection con = new DataBaseHandler().getDbConnection();
             PreparedStatement pr = con.prepareStatement(select);
@@ -239,6 +266,15 @@ public class Controller implements Initializable {
     }
    @FXML
     public void ClickToQuad(ActionEvent actionEvent) {
+        //  на графике все верно располагается,
+                  //  по х - время фиксации значения временного ряда,т.е. года
+                  //  по у - значение временного ряда,т.е. количество браков
+                  lineChart.getXAxis().setAutoRanging(false);
+                  yAxis.setUpperBound(2018);
+                  yAxis.setLowerBound(1945);
+                  yAxis.setTickUnit(5);
+                  yAxis.setLabel("Годы");
+                  xAxis.setLabel("Браки");
         try {
             Connection con = new DataBaseHandler().getDbConnection();
             PreparedStatement pr = con.prepareStatement(select);
