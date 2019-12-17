@@ -415,9 +415,55 @@ public class Controller implements Initializable {
         return mis1;
     }
 
-
-     public static double QuadReg(ArrayList<Double> x, ArrayList<Double> y, LineChart lineChart) {double n = x.size();
-       double SUMy=0;
+     public static double QuadReg(ArrayList<Double> x, ArrayList<Double> y, LineChart lineChart) {
+         double SUMx=0;
+         double SUMy=0;
+         double SUMxx=0;
+         double SUMxxx=0;
+         double SUMxxxx=0;
+         double SUMxy=0;
+         double SUMxxy =0;
+         double n=x.size();
+         double mis=0;
+         for (int i=0;i<x.size();i++) {
+             SUMx+= x.get(i);
+             SUMy+= y.get(i);
+             SUMxx+= x.get(i)*x.get(i) ;
+             SUMxxx+= x.get(i)*x.get(i) *x.get(i);
+             SUMxxxx+= x.get(i)*x.get(i)*x.get(i) *x.get(i);
+             SUMxxy+=x.get(i)*x.get(i) *y.get(i);
+             SUMxy+= x.get(i) * y.get(i);
+         }
+         double DET= SUMxx*SUMxx*SUMxx + SUMx*SUMx*SUMxxxx + SUMxxx*SUMxxx*n - SUMxxxx*SUMxx*n
+                 -SUMxxx *SUMx *SUMxx
+                 - SUMxxx*SUMx*SUMxx;
+         double A_DET= SUMy*SUMxx*SUMxx + SUMx*SUMx*SUMxxy+ SUMxy*SUMxxx*n -SUMxxy*SUMxx*n -
+                 SUMxy*SUMx*SUMxx-
+                 SUMxxx*SUMx*SUMy;
+         double B_DET= SUMxx*SUMxy*SUMxx + SUMy*SUMx*SUMxxxx + SUMxxx*SUMxxy*n-SUMxxxx*SUMxy*n-
+                 SUMxxx*SUMy*SUMxx -
+                 SUMxxy*SUMx*SUMxx;
+         double C_DET=  SUMxx*SUMxx*SUMxxy + SUMx*SUMxy*SUMxxx +SUMxxx *SUMxxx*SUMy - SUMxxxx*SUMxx*SUMy -
+                 SUMxxx*SUMx*SUMxxy -
+                 SUMxy*SUMx*SUMxx;
+         double a=A_DET/DET;
+         double b=B_DET/DET;
+         double c=C_DET/DET;
+         XYChart.Series<Double, Double> series4 = new XYChart.Series<>();{
+         for (int i=0;i< x.size();i++) {
+             series4.getData().add(new XYChart.Data(x.get(i), a*x.get(i)*x.get(i)+b*x.get(i)+c));
+         }
+         lineChart.getData().add(series4);
+         series4.setName("Квадратичная регрессия");
+         for (int i=0;i<x.size();i++) {
+             mis+=Math.abs((y.get(i)-(a*x.get(i)*x.get(i)+b *x.get(i)+c))/y.get(i));
+         }
+         double mis1 =mis*100/n;
+         System.out.println("Среднее отклонение расчетных значений от фактических (квадратичная регрессия) =" + mis1);
+         return mis1;
+        }
+     // готовые значения с сайта,тоже не строится график                                                                                             
+     /*  double SUMy=0;
         double SUMx=0;
         double n=x.size();
         double mis=0;
@@ -436,7 +482,7 @@ public class Controller implements Initializable {
         System.out.println("Среднее отклонение расчетных значений от фактических (квадратичная регрессия) ="+mis1);
         lineChart.getData().add(series4);
         series4.setName("Квадратичная регрессия");
-        return mis1;
+        return mis1; */
         }
 
 }
