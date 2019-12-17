@@ -474,7 +474,7 @@ public class Controller implements Initializable {
         double b=307363.8801;
         double c=-299569600.6046;
         XYChart.Series<Double, Double> series4 = new XYChart.Series<>();
-        for (int i=5; i<x.size()-5;i++) {
+        for (int i=0; i<x.size();i++) {
            series4.getData().add(new XYChart.Data(x.get(i),a*Math.pow(x.get(i),2)+b*x.get(i)+c));  }
         for (int i=0; i<x.size();i++) {
            mis+=Math.abs((y.get(i)-(a*x.get(i)*x.get(i) + b*x.get(i) +c))/y.get(i)); }
