@@ -47,7 +47,28 @@
                         <Button fx:id="expbtn" layoutX="17.0" layoutY="164.0" mnemonicParsing="false" onAction="#ClickToExp" prefHeight="39.0" prefWidth="231.0" text="Построить экспоненциальную регрессию" />
                         <Button layoutX="17.0" layoutY="213.0" mnemonicParsing="false" prefHeight="39.0"onAction="#ClickToQuad" prefWidth="231.0" text="Построить квадратичную регрессию" />
                         <Button layoutX="17.0" layoutY="373.0" mnemonicParsing="false" onAction="#ClickToSave" prefHeight="39.0" prefWidth="231.0" text="Сохранить действия" />
-                     </children>
+                    <ComboBox fx:id="diapazon" layoutX="103.0" layoutY="441.0" prefWidth="150.0" promptText="Выберете до какого года" >
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="1950" />
+                                    <String fx:value="1955" />
+                                    <String fx:value="1960" />
+                                    <String fx:value="1965" />
+                                    <String fx:value="1970" />
+                                    <String fx:value="1975" />
+                                    <String fx:value= "1980" />
+                                    <String fx:value="1985" />
+                                    <String fx:value="1990" />
+                                    <String fx:value="1995" />
+                                    <String fx:value="2000" />
+                                    <String fx:value="2005" />
+                                    <String fx:value="2010" />
+                                    <String fx:value="2015" />
+                                    <String fx:value="2018" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                 </children>
                   </AnchorPane>
             </content>
           </Tab>
