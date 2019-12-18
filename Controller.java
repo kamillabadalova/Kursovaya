@@ -60,7 +60,8 @@ public class Controller implements Initializable {
     TextArea textArea1;
     @FXML
     ColorPicker colorpicker;
-    
+    @FXML
+    ComboBox diapazon;
 
     public void DownFile(ActionEvent actionEvent) {
         new DataBaseHandler().fileDownload(); }
@@ -134,21 +135,20 @@ public class Controller implements Initializable {
               }
 
     @FXML
-     public void ClickToLin(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-         //  на графике все верно располагается,
-                  //  по х - время фиксации значения временного ряда,т.е. года
-                  //  по у - значение временного ряда,т.е. количество браков
-                  lineChart.getXAxis().setAutoRanging(false);
-                  yAxis.setUpperBound(2018);
-                  yAxis.setLowerBound(1945);
-                  yAxis.setTickUnit(5);
-                  yAxis.setLabel("Годы");
-                  xAxis.setLabel("Браки");
+      public void ClickToLin(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        lineChart.getXAxis().setAutoRanging(false);
+        yAxis.setUpperBound(Double.parseDouble(String.valueOf(diapazon.getValue())));
+        yAxis.setLowerBound(1945);
+        yAxis.setTickUnit(5);
+        yAxis.setLabel("Годы");
+        xAxis.setLabel("Браки");
          try {
              Connection con = new DataBaseHandler().getDbConnection();
              PreparedStatement pr = con.prepareStatement(select);
              rs = pr.executeQuery();
-             while (rs.next()) {
+             while (rs.next()
+                     &&!rs.getString(1).equals(diapazon.getValue())
+             ) {
                  po_x.add(Double.parseDouble(rs.getString(1)));
                  po_y.add(Double.parseDouble(rs.getString(2)));
              }
@@ -159,8 +159,9 @@ public class Controller implements Initializable {
          } catch (NumberFormatException e) {
              e.printStackTrace();
          }
-        textArea.appendText("Построение линейной регрессии со средним отклонением,равным  " +
-                LineReg(po_x,po_y,lineChart) + ", ");
+      textArea.appendText("Построение линейной регрессии со средним отклонением,равным  " +
+                LineReg(po_x,po_y,lineChart) + " и выбранным диапазоном до " + diapazon.getValue() +" года"+"\n");
+          
         Platform.runLater(() -> {
             Color c1 = colorpicker.getValue();
             String color_style = c1.toString().substring(2, 8);
@@ -182,17 +183,19 @@ public class Controller implements Initializable {
         //  на графике все верно располагается,
                   //  по х - время фиксации значения временного ряда,т.е. года
                   //  по у - значение временного ряда,т.е. количество браков
-                  lineChart.getXAxis().setAutoRanging(false);
-                  yAxis.setUpperBound(2018);
-                  yAxis.setLowerBound(1945);
-                  yAxis.setTickUnit(5);
-                  yAxis.setLabel("Годы");
-                  xAxis.setLabel("Браки");
+         lineChart.getXAxis().setAutoRanging(false);
+         yAxis.setUpperBound(Double.parseDouble(String.valueOf(diapazon.getValue())));
+         yAxis.setLowerBound(1945);
+         yAxis.setTickUnit(5);
+         yAxis.setLabel("Годы");
+         xAxis.setLabel("Браки");
         try {
             Connection con = new DataBaseHandler().getDbConnection();
             PreparedStatement pr = con.prepareStatement(select);
             rs = pr.executeQuery();
-            while (rs.next()) {
+            while (rs.next()
+                    &&!rs.getString(1).equals(diapazon.getValue())
+            ) {
                 po_x.add(Double.parseDouble(rs.getString(1)));
                 po_y.add(Double.parseDouble(rs.getString(2)));
             }
@@ -203,8 +206,8 @@ public class Controller implements Initializable {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-         textArea.appendText("Построение логарифмической регрессии со средним отклонением,равным "
-              +  LogReg(po_x,po_y,lineChart)+ ", ");
+       textArea.appendText("Построение логарифмической регрессии со средним отклонением,равным "
+              +  LogReg(po_x,po_y,lineChart)+ " и выбранным диапазоном до " + diapazon.getValue() +" года"+"\n");
          Platform.runLater(() -> {
              Color c2 = colorpicker.getValue();
              String color_style = c2.toString().substring(2, 8);
@@ -225,17 +228,19 @@ public class Controller implements Initializable {
         //  на графике все верно располагается,
                   //  по х - время фиксации значения временного ряда,т.е. года
                   //  по у - значение временного ряда,т.е. количество браков
-                  lineChart.getXAxis().setAutoRanging(false);
-                  yAxis.setUpperBound(2018);
-                  yAxis.setLowerBound(1945);
-                  yAxis.setTickUnit(5);
-                  yAxis.setLabel("Годы");
-                  xAxis.setLabel("Браки");
+         lineChart.getXAxis().setAutoRanging(false);
+        yAxis.setLowerBound(1945);
+        yAxis.setUpperBound(Double.parseDouble(String.valueOf(diapazon.getValue())));
+        yAxis.setTickUnit(5);
+        yAxis.setLabel("Годы");
+        xAxis.setLabel("Браки");
         try {
             Connection con = new DataBaseHandler().getDbConnection();
             PreparedStatement pr = con.prepareStatement(select);
             rs = pr.executeQuery();
-            while (rs.next()) {
+            while (rs.next()
+                    &&!rs.getString(1).equals(diapazon.getValue())
+            ) {
                 po_x.add(Double.parseDouble(rs.getString(1)));
                 po_y.add(Double.parseDouble(rs.getString(2)));
             }
@@ -247,7 +252,7 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
         textArea.appendText("Построение экспоненциальной регрессии со средним отклонением,равным " +
-                ExpReg(po_x,po_y,lineChart) + ", ");
+                ExpReg(po_x,po_y,lineChart) + " и выбранным диапазоном до " + diapazon.getValue() +" года"+"\n");
 
         Platform.runLater(() -> {
             Color c3 = colorpicker.getValue();
@@ -269,17 +274,19 @@ public class Controller implements Initializable {
         //  на графике все верно располагается,
                   //  по х - время фиксации значения временного ряда,т.е. года
                   //  по у - значение временного ряда,т.е. количество браков
-                  lineChart.getXAxis().setAutoRanging(false);
-                  yAxis.setUpperBound(2018);
-                  yAxis.setLowerBound(1945);
-                  yAxis.setTickUnit(5);
-                  yAxis.setLabel("Годы");
-                  xAxis.setLabel("Браки");
+        lineChart.getXAxis().setAutoRanging(false);
+       yAxis.setLowerBound(1945);
+       yAxis.setUpperBound(Double.parseDouble(String.valueOf(diapazon.getValue())));
+       yAxis.setTickUnit(5);
+       yAxis.setLabel("Годы");
+       xAxis.setLabel("Браки");
         try {
             Connection con = new DataBaseHandler().getDbConnection();
             PreparedStatement pr = con.prepareStatement(select);
             rs = pr.executeQuery();
-            while (rs.next()) {
+            while (rs.next()
+                    &&!rs.getString(1).equals(diapazon.getValue())
+            ) {
                 po_x.add(Double.parseDouble(rs.getString(1)));
                 po_y.add(Double.parseDouble(rs.getString(2)));
             }
@@ -291,7 +298,7 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
         textArea.appendText("Построение квадратичной регрессии со средним отклонением,равным " +
-                QuadReg(po_x,po_y,lineChart) + " , ");
+                QuadReg(po_x,po_y,lineChart) +" и выбранным диапазоном до " + diapazon.getValue() +" года"+"\n");
 
        Platform.runLater(() -> {
            Color c4 = colorpicker.getValue();
@@ -456,33 +463,9 @@ public class Controller implements Initializable {
          lineChart.getData().add(series4);
          series4.setName("Квадратичная регрессия");
          for (int i=0;i<x.size();i++) {
-             mis+=Math.abs((y.get(i)-(a*x.get(i)*x.get(i)+b *x.get(i)+c))/y.get(i));
-         }
+             mis+=Math.abs((y.get(i)-(a*x.get(i)*x.get(i)+b *x.get(i)+c))/y.get(i)); }
          double mis1 =mis*100/n;
          System.out.println("Среднее отклонение расчетных значений от фактических (квадратичная регрессия) =" + mis1);
          return mis1;
         }
-     // готовые значения с сайта,тоже не строится график                                                                                             
-     /*  double SUMy=0;
-        double SUMx=0;
-        double n=x.size();
-        double mis=0;
-        for (int i=0;i<x.size();i++) {
-          SUMx+=x.get(i);
-          SUMy+=y.get(i); }
-        double a=-78.4912;
-        double b=307363.8801;
-        double c=-299569600.6046;
-        XYChart.Series<Double, Double> series4 = new XYChart.Series<>();
-        for (int i=0; i<x.size();i++) {
-           series4.getData().add(new XYChart.Data(x.get(i),a*Math.pow(x.get(i),2)+b*x.get(i)+c));  }
-        for (int i=0; i<x.size();i++) {
-           mis+=Math.abs((y.get(i)-(a*x.get(i)*x.get(i) + b*x.get(i) +c))/y.get(i)); }
-        double mis1=mis*100/n;
-        System.out.println("Среднее отклонение расчетных значений от фактических (квадратичная регрессия) ="+mis1);
-        lineChart.getData().add(series4);
-        series4.setName("Квадратичная регрессия");
-        return mis1; */
-        }
-
 }
