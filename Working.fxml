@@ -45,7 +45,7 @@
                         <Button fx:id="linbtn" layoutX="17.0" layoutY="62.0" mnemonicParsing="false" onAction="#ClickToLin" prefHeight="39.0" prefWidth="231.0" text="Построить линейную регрессию" />
                         <Button fx:id="logbtn" layoutX="17.0" layoutY="113.0" mnemonicParsing="false" onAction="#ClickToLog" prefHeight="39.0" prefWidth="231.0" text="Построить логарифмическую регрессию" />
                         <Button fx:id="expbtn" layoutX="17.0" layoutY="164.0" mnemonicParsing="false" onAction="#ClickToExp" prefHeight="39.0" prefWidth="231.0" text="Построить экспоненциальную регрессию" />
-                        <Button layoutX="17.0" layoutY="213.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="231.0" text="Построить квадратичную регрессию" />
+                        <Button layoutX="17.0" layoutY="213.0" mnemonicParsing="false" prefHeight="39.0"onAction="#ClickToQuad" prefWidth="231.0" text="Построить квадратичную регрессию" />
                         <Button layoutX="17.0" layoutY="373.0" mnemonicParsing="false" onAction="#ClickToSave" prefHeight="39.0" prefWidth="231.0" text="Сохранить действия" />
                      </children>
                   </AnchorPane>
