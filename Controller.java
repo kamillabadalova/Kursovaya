@@ -85,7 +85,7 @@ public class Controller implements Initializable {
             col_year.setCellValueFactory(new PropertyValueFactory<>("year"));
             col_num.setCellValueFactory(new PropertyValueFactory<>("num"));
             tableView.setItems(list);
-            textArea1.appendText("Выведение данных в таблицу " + " , ");
+            textArea1.appendText("Выведение данных в таблицу " + "\n");
         });
     }
 
@@ -116,7 +116,7 @@ public class Controller implements Initializable {
                   }
                   lineChart.getData().add(series);
                   series.setName("График данных");
-                  textArea.appendText("Построение графика данных " + ", ");
+                  textArea.appendText("Построение графика данных " + "\n");
 
                  Platform.runLater(() -> {
                       Color c = colorpicker.getValue();
