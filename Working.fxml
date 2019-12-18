@@ -47,7 +47,7 @@
                         <Button fx:id="expbtn" layoutX="17.0" layoutY="164.0" mnemonicParsing="false" onAction="#ClickToExp" prefHeight="39.0" prefWidth="231.0" text="Построить экспоненциальную регрессию" />
                         <Button layoutX="17.0" layoutY="213.0" mnemonicParsing="false" prefHeight="39.0"onAction="#ClickToQuad" prefWidth="231.0" text="Построить квадратичную регрессию" />
                         <Button layoutX="17.0" layoutY="373.0" mnemonicParsing="false" onAction="#ClickToSave" prefHeight="39.0" prefWidth="231.0" text="Сохранить действия" />
-                    <ComboBox fx:id="diapazon" layoutX="103.0" layoutY="441.0" prefWidth="150.0" promptText="Выберете до какого года" >
+                        <ComboBox fx:id="diapazon" layoutX="126.0" layoutY="266.0" prefHeight="39.0" prefWidth="124.0" promptText="Выберете до какого года">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
                                     <String fx:value="1950" />
